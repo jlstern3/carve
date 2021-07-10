@@ -8,7 +8,7 @@ app.use(express.urlencoded({extended: true}));
 app.use(cors());
 
 require('./config/mongoose.config');
-// require('./routes/riders.route');
+require('./routes/riders.route');
 
 app.listen(port, () => {
     console.log(`Server is actively listening on Port ${port}`)

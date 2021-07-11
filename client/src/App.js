@@ -3,7 +3,7 @@ import './App.css';
 function App() {
   return (
     <div className="App">
-      <h1>Carve - Longboarding</h1>
+      <h1>Carve</h1>
     </div>
   );
 }

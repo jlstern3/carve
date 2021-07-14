@@ -9,6 +9,7 @@ app.use(cors());
 
 require('./config/mongoose.config');
 require('./routes/riders.route')(app);
+require('./routes/users.routes')(app);
 
 app.listen(port, () => {
     console.log(`Server is actively listening on Port ${port}`)

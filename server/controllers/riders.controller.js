@@ -30,18 +30,18 @@ module.exports.getAllRiders = (req, res) => {
 
 
 
-// module.exports.getSingleRider = (req, res) => {
-//     console.log("Inside getSingleRider");
-//     Rider.findById(req.params.id)
-//         .then((singleRider) => {
-//             console.log(singleRider);
-//             res.json(singleRider);
-//         })
-//         .catch((err) => {
-//             console.log(err);
-//             res.json(err);
-//         });
-// }
+module.exports.getSingleRider = (req, res) => {
+    console.log("Inside getSingleRider");
+    Rider.findById(req.params.id)
+        .then((singleRider) => {
+            console.log(singleRider);
+            res.json(singleRider);
+        })
+        .catch((err) => {
+            console.log(err);
+            res.json(err);
+        });
+}
 
 
 // module.exports.deleteRider = (req,res) =>{

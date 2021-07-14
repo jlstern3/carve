@@ -44,18 +44,18 @@ module.exports.getSingleRider = (req, res) => {
 }
 
 
-// module.exports.deleteRider = (req,res) =>{
-//     console.log("Inside deleteRider");
-//     Rider.findByIdAndDelete(req.params.id)
-//         .then((deletedRider) =>{
-//             console.log(deletedRider);
-//             res.json(deletedRider);
-//         })
-//         .catch((err) => {
-//             console.log(err);
-//             res.json(err);
-//         });
-// }
+module.exports.deleteRider = (req,res) =>{
+    console.log("Inside deleteRider");
+    Rider.findByIdAndDelete(req.params.id)
+        .then((deletedRider) =>{
+            console.log(deletedRider);
+            res.json(deletedRider);
+        })
+        .catch((err) => {
+            console.log(err);
+            res.json(err);
+        });
+}
 
 
 // module.exports.updateRider = (req, res) =>{

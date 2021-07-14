@@ -58,18 +58,18 @@ module.exports.deleteRider = (req,res) =>{
 }
 
 
-// module.exports.updateRider = (req, res) =>{
-//     console.log("Inside updateRider");
-//     Rider.findByIdAndUpdate(req.params.id, req.body, {
-//         new: true,
-//         runValidators: true
-//     })
-//         .then((updatedRider) => {
-//             console.log(updatedRider);
-//             res.json(updatedRider);
-//         })
-//         .catch((err) => {
-//             console.log(err);
-//             res.json(err);
-//         })
-// }
+module.exports.updateRider = (req, res) =>{
+    console.log("Inside updateRider");
+    Rider.findByIdAndUpdate(req.params.id, req.body, {
+        new: true,
+        runValidators: true
+    })
+        .then((updatedRider) => {
+            console.log(updatedRider);
+            res.json(updatedRider);
+        })
+        .catch((err) => {
+            console.log(err);
+            res.json(err);
+        })
+}

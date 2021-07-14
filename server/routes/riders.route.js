@@ -10,7 +10,7 @@ module.exports = function(app) {
 
         app.delete('/api/riders/:id', RiderController.deleteRider);
 
-        // app.put('/api/riders/:id', RiderController.updateRider);
+        app.put('/api/riders/:id', RiderController.updateRider);
 
 
 }

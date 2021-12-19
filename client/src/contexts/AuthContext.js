@@ -17,7 +17,9 @@ export default function AuthProvider({ children }) {
         return auth.createUserWithEmailAndPassword(email, password)
     }
 
-
+    function login (email, password){
+        return auth.signInWithEmailAndPassword(email, password)
+    }
     // sets current user to whoever logged in -- Firebase notifies us when 
     // something has changed so we're saying if something has changed, set that user to the current user
     // only want this to render once, hence the useEffect
@@ -32,7 +34,7 @@ export default function AuthProvider({ children }) {
 
     const value = {
         currentUser,
-        // login,
+        login,
         signup,
         // logout,
         // resetPassword,

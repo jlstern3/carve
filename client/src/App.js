@@ -7,6 +7,7 @@ import { Container } from 'react-bootstrap';
 import AuthProvider from './contexts/AuthContext';
 import { BrowserRouter as Router, Routes, Route, useRoutes } from 'react-router-dom';
 import Dashboard from './components/Dashboard';
+import Login from './components/Login';
 
 function App() {
   return (
@@ -21,6 +22,7 @@ function App() {
               <Route path="/signup" element = {<Signup/>}/>
               {/* Exact paths means === so every route starting with / won't lead to Dashboard */}
               <Route exact path="/" element = {<Dashboard/>}/>
+              <Route path="/login" element = {<Login/>}/>
             </Routes>
           </AuthProvider>
         </Router>

@@ -1,58 +1,53 @@
-import React, {useState} from 'react';
-import axios from 'axios';
-import {navigate} from '@reach/router';
+import React, { useRef, useState } from "react"
+import { Form, Button, Card, Alert } from "react-bootstrap"
+import { useAuth } from "../contexts/AuthContext"
+import { Link } from "react-router-dom"
 
-const Login = () => {
-const [email, setEmail] = useState("");
-const [password, setPassword] = useState("");
-const [errorMessage, setErrorMessage] = useState("");
+export default function Login() {
+    const emailRef = useRef()
+    const passwordRef = useRef()
+    const { signup } = useAuth()
+    const [error, setError] = useState("")
+    const [loading, setLoading] = useState(false)
 
-const login = e => {
-    e.preventDefault();
-    axios.post('http://localhost:8000/api/users/login', {
-        email: email,
-        password: password,
-    },
-    {
-        withCredentials: true,
-    })
-    .then((res)=>{
-        console.log(res.cookie);
-        console.log(res);
-        console.log(res.data, "this is res data");
-        navigate('/api/riders');
-    })
-    .catch((err)=>{
-        console.log(err.response);
-        setErrorMessage(err.response.data.message);
-    });
-};
+    async function handleSubmit(e) {
+        e.preventDefault();
+        try {
+            setError("")
+            setLoading(true)
+            await signup(emailRef.current.value, passwordRef.current.value)
+            // history.push("/")
+        } catch {
+            setError("Failed to create an account")
+        }
 
-return(
-    <div>
-        <h3>Login</h3>
-        <p className="error-text">{errorMessage ? errorMessage : ""}</p>
-        <form onSubmit = {login}>
-            <div>
-                <label>Email</label>
-                <input
-                type="text"
-                name="email"
-                value={email}
-                onChange = {(e)=> setEmail(e.target.value)} />
+        setLoading(false)
+    }
+
+    return (
+        <div>
+            <Card>
+                <Card.Body>
+                    <h2 className="text-center mb-4">Log In</h2>
+                    {error && <Alert variant="danger">{error}</Alert>}
+                    <Form onSubmit={handleSubmit}>
+                        <Form.Group id="email">
+                            <Form.Label>Email</Form.Label>
+                            <Form.Control type="email" ref={emailRef} required />
+                        </Form.Group>
+                        <Form.Group id="password">
+                            <Form.Label>Password</Form.Label>
+                            <Form.Control type="password" ref={passwordRef} required />
+                        </Form.Group>
+                        {/* disable button when loading so user can't resubmit form and create multiple accounts */}
+                        <Button disabled={loading} type="submit" className="w-100">Log In</Button>
+                    </Form>
+                </Card.Body>
+            </Card>
+            <div className="w-100 text-center mt-2">
+                Need to create an account? <Link to = "/signup">Sign up here. </Link>
             </div>
-            <div>
-                <label>Password</label>
-                <input
-                type="password"
-                name="password"
-                value={password}
-                onChange={(e)=> setPassword(e.target.value)}/>
-            </div>
-            <button type="submit">Sign In</button>
-        </form>
-    </div>
-);
-};
+        </div>
+    )
+}
 
-export default Login;

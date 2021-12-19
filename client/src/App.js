@@ -4,10 +4,11 @@ import { Router } from '@reach/router';
 // import RegisterUser from './components/RegisterUser';
 import Signup from './components/Signup';
 import { Container } from 'react-bootstrap';
-import { AuthProvider } from './contexts/AuthContext';
+import  AuthProvider  from './contexts/AuthContext';
 
 function App() {
   return (
+    // <AuthProvider>
     <Container
       className="d-flex align-items-center justify-content-center"
       style={{ minHeight: "100vh" }}>
@@ -15,6 +16,7 @@ function App() {
         <Signup />
       </div>
     </Container>
+    /* </AuthProvider> */
 
     /* <Router>
       <Login path='/api/users/login'/>

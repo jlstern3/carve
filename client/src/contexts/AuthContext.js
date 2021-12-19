@@ -7,7 +7,7 @@ export function useAuth() {
     return useContext(AuthContext)
 }
 
-export function AuthProvider({ children }) {
+export default function AuthProvider({ children }) {
     // use state hook to get and set current user
     const [currentUser, setCurrentUser] = useState();
 

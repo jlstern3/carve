@@ -1,12 +1,13 @@
 import React, { useRef, useState } from 'react';
 import { Card, Form, Button, Alert } from 'react-bootstrap';
-import {useAuth} from '../contexts/AuthContext';
+import { useAuth } from '../contexts/AuthContext';
 
 export default function Signup(){
     const emailRef = useRef();
     const passwordRef = useRef();
     const passwordConfirmRef = useRef();
-    // const { signup } = useAuth();
+
+    const { signup } = useAuth();
 
     // function handleSubmit(e) {
     //     e.preventDefault();

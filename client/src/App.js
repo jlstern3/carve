@@ -4,6 +4,7 @@ import { Router } from '@reach/router';
 // import RegisterUser from './components/RegisterUser';
 import Signup from './components/Signup';
 import { Container } from 'react-bootstrap';
+import { AuthProvider } from './contexts/AuthContext';
 
 function App() {
   return (

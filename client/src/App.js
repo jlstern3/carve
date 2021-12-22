@@ -10,6 +10,7 @@ import Dashboard from './components/Dashboard';
 import Login from './components/Login';
 import PrivateRoute from './components/PrivateRoute';
 import ForgotPassword from './components/ForgotPassword';
+import UpdateProfile from './components/UpdateProfile';
 
 
 function App() {
@@ -23,14 +24,21 @@ function App() {
           {/* <AuthProvider> */}
           <Routes>
             <Route path="/signup" element={<Signup />} />
-            <Route path="/"
+            <Route exact path="/"
               element={
                 <PrivateRoute>
                   <Dashboard />
                 </PrivateRoute>
               }
             />
-            <Route path="/forgot-password" element = {<ForgotPassword/>} />
+            <Route path="/update-profile"
+              element={
+                <PrivateRoute>
+                  <UpdateProfile />
+                </PrivateRoute>
+              }
+            />
+            <Route path="/forgot-password" element={<ForgotPassword />} />
             <Route default path="/login" element={<Login />} />
           </Routes>
           {/* </AuthProvider> */}

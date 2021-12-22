@@ -29,6 +29,14 @@ export default function AuthProvider({ children }) {
         return auth.sendPasswordResetEmail(email)
     }
 
+    function updateEmail(email){
+        return currentUser.updateEmail(email)
+    }
+
+    function updatePassword(password){
+        return currentUser.updatePassword(password)
+    }
+
     // sets current user to whoever logged in -- Firebase notifies us when 
     // something has changed so we're saying if something has changed, set that user to the current user
     // only want this to render once, hence the useEffect
@@ -47,8 +55,8 @@ export default function AuthProvider({ children }) {
         signup,
         logout,
         resetPassword,
-        // updateEmail,
-        // updatePassword
+        updateEmail,
+        updatePassword
     }
 
     return (

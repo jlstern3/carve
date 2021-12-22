@@ -1,7 +1,7 @@
-import React, { useRef, useState } from "react";
-import { Form, Button, Card, Alert } from "react-bootstrap";
-import { useAuth } from "../contexts/AuthContext";
-import { Link, useNavigate } from "react-router-dom";
+import React, { useRef, useState } from "react"
+import { Form, Button, Card, Alert } from "react-bootstrap"
+import { useAuth } from "../contexts/AuthContext"
+import { Link, useNavigate } from "react-router-dom"
 
 export default function Signup() {
     const emailRef = useRef()
@@ -10,20 +10,27 @@ export default function Signup() {
     const { signup } = useAuth()
     const [error, setError] = useState("")
     const [loading, setLoading] = useState(false)
-    const navigate = useNavigate();
+    const navigate = useNavigate()
 
     async function handleSubmit(e) {
-        e.preventDefault();
+        e.preventDefault()
+
         if (passwordRef.current.value !== passwordConfirmRef.current.value) {
-            console.log("Passwords don't match.")
             return setError("Passwords do not match, please try again.")
         }
+
         try {
+            // console.log("Trying a promise.")
             setError("")
+            // console.log("Set error.");
             setLoading(true)
+            // console.log("Set loading.")
             await signup(emailRef.current.value, passwordRef.current.value)
-            navigate.push("/")
+            // console.log("Signup function complete")
+            return navigate("/")
+            // console.log("Should've navigated to '/'")
         } catch {
+            console.log("Something's wrong, the promise returned failed.")
             setError("Failed to create an account.")
         }
 
@@ -31,7 +38,7 @@ export default function Signup() {
     }
 
     return (
-        <div>
+        <>
             <Card>
                 <Card.Body>
                     <h2 className="text-center mb-4">Sign Up</h2>
@@ -45,20 +52,19 @@ export default function Signup() {
                             <Form.Label>Password</Form.Label>
                             <Form.Control type="password" ref={passwordRef} required />
                         </Form.Group>
-
                         <Form.Group id="password-confirm">
                             <Form.Label>Password Confirmation</Form.Label>
                             <Form.Control type="password" ref={passwordConfirmRef} required />
                         </Form.Group>
-                        {/* disable button when loading so user can't resubmit form and create multiple accounts */}
-                        <Button disabled={loading} type="submit" className="w-100">Sign Up</Button>
+                        <Button disabled={loading} className="w-100" type="submit">
+                            Sign Up
+                        </Button>
                     </Form>
                 </Card.Body>
             </Card>
             <div className="w-100 text-center mt-2">
-                Already have an account? <Link to="/login">Log in here.</Link>
+                Already have an account? <Link to="/login">Log In</Link>
             </div>
-        </div>
+        </>
     )
 }
-

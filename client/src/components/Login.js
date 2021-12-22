@@ -18,7 +18,7 @@ export default function Login() {
             setLoading(true)
             await login(emailRef.current.value, passwordRef.current.value)
             // brings us to dashboard upon successful login
-            navigate.push("/")
+            navigate("/")
         } catch {
             setError("Failed to log in.")
         }

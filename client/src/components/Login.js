@@ -44,6 +44,9 @@ export default function Login() {
                         {/* disable button when loading so user can't resubmit form and create multiple accounts */}
                         <Button disabled={loading} type="submit" className="w-100">Log In</Button>
                     </Form>
+                    <div className="w-100 text-center mt-3">
+                        <Link to="/forgot-password">Forgot Password?</Link>
+                    </div>
                 </Card.Body>
             </Card>
             <div className="w-100 text-center mt-2">

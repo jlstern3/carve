@@ -17,9 +17,7 @@ export default function ForgotPassword() {
             setError("")
             setLoading(true)
             await resetPassword(emailRef.current.value)
-            console.log("This console.log comes after await resetPassword")
-            setMessage('Please check your inbox for further instructions.')
-            console.log("This console.log comes after message to check inbox")
+            setMessage('Please check your inbox for further password re-set instructions.')
         } catch {
             setError("Failed to send reset password email.")
         }
@@ -33,6 +31,8 @@ export default function ForgotPassword() {
                 <Card.Body>
                     <h2 className="text-center mb-4">Re-set Password</h2>
                     {error && <Alert variant="danger">{error}</Alert>}
+                    {message && <Alert variant="success">{message}</Alert>}
+
                     <Form onSubmit={handleSubmit}>
                         <Form.Group id="email">
                             <Form.Label>Email</Form.Label>

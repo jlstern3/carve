@@ -20,29 +20,31 @@ function App() {
       className="d-flex align-items-center justify-content-center"
       style={{ minHeight: "100vh" }}>
       <div className="w-100" style={{ maxWidth: '400px' }}>
-        <Router>
-          {/* <AuthProvider> */}
-          <Routes>
-            <Route path="/signup" element={<Signup />} />
-            <Route exact path="/"
-              element={
-                <PrivateRoute>
-                  <Dashboard />
-                </PrivateRoute>
-              }
-            />
-            <Route path="/update-profile"
-              element={
-                <PrivateRoute>
-                  <UpdateProfile />
-                </PrivateRoute>
-              }
-            />
-            <Route path="/forgot-password" element={<ForgotPassword />} />
-            <Route default path="/login" element={<Login />} />
-          </Routes>
-          {/* </AuthProvider> */}
-        </Router>
+        <AuthProvider>
+
+          <Router>
+            <Routes>
+              <Route path="/signup" element={<Signup />} />
+              <Route exact path="/"
+                element={
+                  <PrivateRoute>
+                    <Dashboard />
+                  </PrivateRoute>
+                }
+              />
+              <Route path="/update-profile"
+                element={
+                  <PrivateRoute>
+                    <UpdateProfile />
+                  </PrivateRoute>
+                }
+              />
+              <Route path="/forgot-password" element={<ForgotPassword />} />
+              <Route default path="/login" element={<Login />} />
+            </Routes>
+          </Router>
+        </AuthProvider>
+
       </div>
     </Container>
 

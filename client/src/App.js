@@ -5,9 +5,11 @@ import React, { useState } from 'react';
 import Signup from './components/Signup';
 import { Container } from 'react-bootstrap';
 import AuthProvider from './contexts/AuthContext';
-import { BrowserRouter as Router, Routes, Route, useRoutes } from 'react-router-dom';
+import { BrowserRouter as Router, Routes, Route, Link, Navigate, Outlet, useRoutes } from 'react-router-dom';
 import Dashboard from './components/Dashboard';
 import Login from './components/Login';
+import PrivateRoute from './components/PrivateRoute';
+
 
 function App() {
   return (
@@ -17,14 +19,19 @@ function App() {
       style={{ minHeight: "100vh" }}>
       <div className="w-100" style={{ maxWidth: '400px' }}>
         <Router>
-          <AuthProvider>
-            <Routes>
-              <Route path="/signup" element = {<Signup/>}/>
-              {/* Exact paths means === so every route starting with / won't lead to Dashboard */}
-              <Route exact path="/" element = {<Dashboard/>}/>
-              <Route path="/login" element = {<Login/>}/>
-            </Routes>
-          </AuthProvider>
+          {/* <AuthProvider> */}
+          <Routes>
+            <Route path="/signup" element={<Signup />} />
+            <Route path="/"
+              element={
+                <PrivateRoute>
+                  <Dashboard />
+                </PrivateRoute>
+              }
+            />
+            <Route default path="/login" element={<Login />} />
+          </Routes>
+          {/* </AuthProvider> */}
         </Router>
       </div>
     </Container>

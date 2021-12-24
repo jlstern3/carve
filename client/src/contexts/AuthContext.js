@@ -3,13 +3,14 @@ import { auth } from "../firebase"
 
 const AuthContext = React.createContext();
 
+// Create our own custom hook: useAuth()
 export function useAuth() {
     return useContext(AuthContext)
 }
 
 export default function AuthProvider({ children }) {
     // use state hook to get and set current user
-    const [currentUser, setCurrentUser] = useState()
+    const [currentUser, setCurrentUser] = useState(null)
     const [loading, setLoading] = useState(true)
     // create signup function using auth variable we created in firebase.js
 

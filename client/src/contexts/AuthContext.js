@@ -1,5 +1,11 @@
 import React, { useContext, useState, useEffect } from "react"
 import { auth } from "../firebase"
+import firebase from "firebase/app"
+// import { GoogleAuthProvider } from "firebase/auth";
+// import { getAuth, signInWithPopup, GoogleAuthProvider } from "firebase/auth";
+
+
+
 
 const AuthContext = React.createContext();
 
@@ -14,27 +20,39 @@ export default function AuthProvider({ children }) {
     const [loading, setLoading] = useState(true)
     // create signup function using auth variable we created in firebase.js
 
+    function googleLogin() {
+        const provider = new firebase.auth.GoogleAuthProvider();
+        firebase.auth().signInWithPopup(provider)
+            .then(result => {
+                const user = result.user;
+                document.write(`Hello ${user.displayName}!  You've successfully logged in using your Google account.`);
+                console.log(user)
+            })
+            .catch(console.log)
+    }
+
+
     function signup(email, password) {
         return auth.createUserWithEmailAndPassword(email, password)
     }
 
-    function login (email, password){
+    function login(email, password) {
         return auth.signInWithEmailAndPassword(email, password)
     }
 
-    function logout(){
+    function logout() {
         return auth.signOut()
     }
 
-    function resetPassword(email){
+    function resetPassword(email) {
         return auth.sendPasswordResetEmail(email)
     }
 
-    function updateEmail(email){
+    function updateEmail(email) {
         return currentUser.updateEmail(email)
     }
 
-    function updatePassword(password){
+    function updatePassword(password) {
         return currentUser.updatePassword(password)
     }
 
@@ -42,7 +60,7 @@ export default function AuthProvider({ children }) {
     // something has changed so we're saying if something has changed, set that user to the current user
     // only want this to render once, hence the useEffect
     useEffect(() => {
-        const unsubscribe = auth.onAuthStateChanged(user => {       
+        const unsubscribe = auth.onAuthStateChanged(user => {
             setCurrentUser(user)
             setLoading(false)
         })
@@ -57,7 +75,8 @@ export default function AuthProvider({ children }) {
         logout,
         resetPassword,
         updateEmail,
-        updatePassword
+        updatePassword,
+        googleLogin
     }
 
     return (

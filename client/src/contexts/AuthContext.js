@@ -25,7 +25,6 @@ export default function AuthProvider({ children }) {
         firebase.auth().signInWithPopup(provider)
             .then(result => {
                 const user = result.user;
-                document.write(`Hello ${user.displayName}!  You've successfully logged in using your Google account.`);
                 console.log(user)
             })
             .catch(console.log)

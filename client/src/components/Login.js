@@ -6,7 +6,7 @@ import { Link, useNavigate } from "react-router-dom"
 export default function Login() {
     const emailRef = useRef()
     const passwordRef = useRef()
-    const { login } = useAuth()
+    const { login, googleLogin } = useAuth()
     const [error, setError] = useState("")
     const [loading, setLoading] = useState(false)
     const navigate = useNavigate()
@@ -42,15 +42,24 @@ export default function Login() {
                             <Form.Control type="password" ref={passwordRef} required />
                         </Form.Group>
                         {/* disable button when loading so user can't resubmit form and create multiple accounts */}
-                        <Button disabled={loading} type="submit" className="w-100">Log In</Button>
+                        <Button disabled={loading} type="submit" className="w-100 mt-3">Log In</Button>
                     </Form>
+                    <div className="text-center">
+                        <h3 className="mt-3 mb-3">OR</h3>
+                        <Button type="submit" disabled={loading}
+                            className="w-40 mb-2 mt-2"
+                            onClick={googleLogin}>Sign in with Google</Button>
+                        <Button type="submit"
+                            disabled={loading}
+                            className="w-40 mb-2 mt-2 mr-2">Sign in with Facebook</Button>
+                    </div>
                     <div className="w-100 text-center mt-3">
                         <Link to="/forgot-password">Forgot Password?</Link>
                     </div>
                 </Card.Body>
             </Card>
             <div className="w-100 text-center mt-2">
-                Need to create an account? <Link to = "/signup">Sign up here. </Link>
+                Need to create an account? <Link to="/signup">Sign up here. </Link>
             </div>
         </div>
     )

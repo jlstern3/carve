@@ -1,11 +1,11 @@
-import React, { useState } from 'react';
+import React from 'react';
 // import { Router } from '@reach/router';
 // import Login from './components/Login';
 // import RegisterUser from './components/RegisterUser';
 import Signup from './components/Signup';
 import { Container } from 'react-bootstrap';
 import AuthProvider from './contexts/AuthContext';
-import { BrowserRouter as Router, Routes, Route, Link, Navigate, Outlet, useRoutes } from 'react-router-dom';
+import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import Dashboard from './components/Dashboard';
 import Login from './components/Login';
 import PrivateRoute from './components/PrivateRoute';

@@ -2,11 +2,14 @@ import React, { useRef, useState } from "react"
 import { Form, Button, Card, Alert } from "react-bootstrap"
 import { useAuth } from "../contexts/AuthContext"
 import { Link, useNavigate } from "react-router-dom"
+import firebase from "firebase/app"
+// import SignInWithGoogle from './SignInWithGoogle';
+
 
 export default function Login() {
     const emailRef = useRef()
     const passwordRef = useRef()
-    const { login, googleLogin } = useAuth()
+    const { login, googleLogin, user, provider } = useAuth()
     const [error, setError] = useState("")
     const [loading, setLoading] = useState(false)
     const navigate = useNavigate()
@@ -18,13 +21,52 @@ export default function Login() {
             setLoading(true)
             await login(emailRef.current.value, passwordRef.current.value)
             // brings us to dashboard upon successful login
-            navigate("/")
+            return navigate("/")
         } catch {
             setError("Failed to log in.")
         }
 
         setLoading(false)
     }
+
+    // Can use this following function without having anything to do with AuthContext
+    // function handleGoogleSubmit(e) {
+    //     const provider = new firebase.auth.GoogleAuthProvider();
+
+    //     firebase.auth().signInWithPopup(provider)
+    //         .then(result => {
+    //             const user = result.user;
+    //             console.log("First console.log in Login.js")
+    //             console.log("2nd console.log in Login.js")
+    //             navigate('/')
+    //             console.log(user)
+
+    //         })
+    //         .catch(console.log)
+
+    // }
+
+
+    async function handleGoogleSubmit(e) {
+        e.preventDefault()
+        try {
+            setError("")
+            setLoading(true)
+            await googleLogin(provider)
+            console.log("First console.log in Login.js")
+            console.log("2nd console.log in Login.js")
+            navigate("/")
+            console.log("3rd console.log in Login.js.  Should have navigated to dash by now.")
+        } catch {
+            setError("Failed to log in with Google.")
+        }
+
+        setLoading(false)
+
+    }
+
+
+
 
     return (
         <div>
@@ -48,10 +90,11 @@ export default function Login() {
                         <h3 className="mt-3 mb-3">OR</h3>
                         <Button type="submit" disabled={loading}
                             className="w-40 mb-2 mt-2"
-                            onClick={googleLogin}>Sign in with Google</Button>
+                            onClick={handleGoogleSubmit}>Sign in with Google</Button>
                         <Button type="submit"
                             disabled={loading}
                             className="w-40 mb-2 mt-2 mr-2">Sign in with Facebook</Button>
+                        {/* <SignInWithGoogle/> */}
                     </div>
                     <div className="w-100 text-center mt-3">
                         <Link to="/forgot-password">Forgot Password?</Link>
@@ -64,4 +107,3 @@ export default function Login() {
         </div>
     )
 }
-

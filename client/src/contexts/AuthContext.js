@@ -4,7 +4,7 @@ import firebase from "firebase/app"
 // import { Navigate, useNavigate } from "react-router-dom";
 
 // import { GoogleAuthProvider } from "firebase/auth";
-// import { getAuth, signInWithPopup, GoogleAuthProvider } from "firebase/auth";
+// import { getAuth, signInWithPopup, GoogleAuthProvider, FacebookAuthProvider } from "firebase/auth";
 
 
 
@@ -49,8 +49,12 @@ export default function AuthProvider({ children }) {
     // }
 
     function googleLogin() {
-                const provider = new firebase.auth.GoogleAuthProvider();
+        const provider = new firebase.auth.GoogleAuthProvider();
+        return auth.signInWithPopup(provider)
+    }
 
+    function facebookLogin(){
+        const provider = new firebase.auth.FacebookAuthProvider();
         return auth.signInWithPopup(provider)
     }
 
@@ -98,7 +102,8 @@ export default function AuthProvider({ children }) {
         resetPassword,
         updateEmail,
         updatePassword,
-        googleLogin
+        googleLogin,
+        facebookLogin
     }
 
     return (

@@ -31,16 +31,6 @@ export default function AuthProvider({ children }) {
     //         .catch(console.log)
     // }
 
-    // function googleLogin(){
-    //     return auth.signInWithPopup(provider)
-    // }
-
-    // function googleLogin(){
-    //     const provider = new firebase.auth.GoogleAuthProvider();
-    //     return provider
-
-    // }
-
     function googleLogin() {
         const provider = new firebase.auth.GoogleAuthProvider();
         return auth.signInWithPopup(provider)
@@ -96,7 +86,7 @@ export default function AuthProvider({ children }) {
         updateEmail,
         updatePassword,
         googleLogin,
-        facebookLogin
+        facebookLogin,
     }
 
     return (

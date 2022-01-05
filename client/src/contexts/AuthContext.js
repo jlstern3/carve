@@ -1,13 +1,6 @@
 import React, { useContext, useState, useEffect } from "react"
 import { auth } from "../firebase"
 import firebase from "firebase/app"
-// import { Navigate, useNavigate } from "react-router-dom";
-
-// import { GoogleAuthProvider } from "firebase/auth";
-// import { getAuth, signInWithPopup, GoogleAuthProvider, FacebookAuthProvider } from "firebase/auth";
-
-
-
 
 const AuthContext = React.createContext();
 

@@ -58,9 +58,7 @@ export default function Login() {
         } catch {
             setError("Failed to log in with Google.")
         }
-
         setLoading(false)
-
     }
 
     async function handleFacebookSubmit(e) {

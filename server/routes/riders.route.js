@@ -6,6 +6,4 @@ module.exports = function(app) {
         app.get('/api/riders/:id', RiderController.getSingleRider);
         app.delete('/api/riders/:id', RiderController.deleteRider);
         app.put('/api/riders/:id', RiderController.updateRider);
-
-
 }
